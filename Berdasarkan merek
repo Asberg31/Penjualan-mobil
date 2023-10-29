@@ -1,0 +1,25 @@
+import pandas as pd
+
+# Membuat dataframe dari data penjualan
+data = {
+    'Merek Mobil': ['Honda Brio', 'Honda Jazz', 'Toyota Rush', 'Honda City', 'Toyota Calya', 'Toyota Hiace', 'Honda Civic'],
+    'Harga Unit': ['Rp. 105.000.000,00', 'Rp. 250.000.000,00', 'Rp. 150.000.000,00', 'Rp. 130.000.000,00', 'Rp. 150.000.000,00', 'Rp. 230.000.000,00', 'Rp. 250.000.000,00'],
+    'Stock Unit': [5, 10, 3, 5, 7, 5, 9],
+    'Unit Terjual': [2, 5, 1, 2, 3, 2, 4]
+}
+
+df = pd.DataFrame(data)
+
+# Menghitung jumlah unit mobil Honda yang terjual
+honda_terjual = df[df['Merek Mobil'].str.contains('Honda')]['Unit Terjual'].sum()
+
+# Menghitung jumlah unit mobil Toyota yang terjual
+toyota_terjual = df[df['Merek Mobil'].str.contains('Toyota')]['Unit Terjual'].sum()
+
+print(f"Jumlah unit mobil Honda yang terjual: {honda_terjual}")
+print(f"Jumlah unit mobil Toyota yang terjual: {toyota_terjual}")
+
+# Visualisasi penjualan mobil berdasarkan merek
+penjualan_merek = df.groupby('Merek Mobil')['Unit Terjual'].sum()
+penjualan_merek.plot(kind='bar', xlabel='Merek Mobil', ylabel='Jumlah Unit Terjual', title='Penjualan Mobil berdasarkan Merek')
+plt.show()

@@ -1,0 +1,17 @@
+# Membuat dataframe hanya untuk mobil Toyota
+df_toyota = df[df['Merek Mobil'].str.contains('Toyota')]
+
+# Mengurutkan mobil Toyota berdasarkan unit terjual (dari terbanyak hingga terendah)
+df_toyota_terjual = df_toyota.sort_values(by='Unit Terjual', ascending=False)
+
+# Menampilkan mobil Toyota yang terjual dengan unit terbanyak hingga terendah
+print("\nMobil Toyota yang terjual (dari terbanyak hingga terendah):")
+print(df_toyota_terjual[['Merek Mobil', 'Unit Terjual']])
+
+# Visualisasi penjualan mobil Toyota
+plt.bar(df_toyota_terjual['Merek Mobil'], df_toyota_terjual['Unit Terjual'])
+plt.xlabel('Merek Mobil')
+plt.ylabel('Jumlah Unit Terjual')
+plt.title('Penjualan Mobil Toyota')
+plt.xticks(rotation=45)
+plt.show()
